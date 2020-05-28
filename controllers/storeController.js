@@ -80,5 +80,6 @@ exports.getStoreBySlug = async (req, res, next) => {
   }
   // Enable Google Maps Embed API service 
   // https://console.cloud.google.com/apis/api/maps-embed-backend.googleapis.com
+  // https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com?q=staticmap
   res.render('store', {title: store.name, store: store})
 }
