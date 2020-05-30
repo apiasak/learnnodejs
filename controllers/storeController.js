@@ -83,3 +83,14 @@ exports.getStoreBySlug = async (req, res, next) => {
   // https://console.cloud.google.com/apis/library/static-maps-backend.googleapis.com?q=staticmap
   res.render('store', {title: store.name, store: store})
 }
+
+exports.getStoresbyTag = async (req, res) => {
+  const tag = req.params.tag
+  const tagQuery = tag || { $exists: true }
+  const tagsPromise = Store.getTagsList()
+  const storesPromise = Store.find( { tags: tagQuery })
+  const [tags, stores] = await Promise.all([tagsPromise, storesPromise])
+
+  res.render('tag', {title:'Tags', tags:tags, tag:tag, stores: stores })
+
+}
